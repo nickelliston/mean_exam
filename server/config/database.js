@@ -4,7 +4,7 @@ const fs = require('fs');
 
 const modelsPath = path.join(__dirname, '../models');
 
-mongoose.connect('mongodb+srv://testuser:testuser@cluster1-nilei.mongodb.net/test?retryWrites=true&w=majority', {
+mongoose.connect('mongodb://localhost/proj_test', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true
