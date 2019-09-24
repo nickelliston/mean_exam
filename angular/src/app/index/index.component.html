@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="jumbotron">
+    <div style="text-align:center">
+      <h2>List of objects currently in the database:</h2>
+      <button type="button" class="btn btn-outline-info" [routerLink]="['/new']">Add New Primary Object</button>
+      <table class="center">
+        <thead>
+          <th>Title</th>
+          <th>Image</th>
+          <th>Actions</th>
+        </thead>
+        <tbody>
+          <tr class="spaceUnder" *ngFor="let x of allPobjects">
+            <td>{{x.title}}</td>
+            <td><img src="{{x.descr}}"></td>
+            <td>
+              <button type="button" class="btn btn-outline-primary" [routerLink]="['/view',x._id]">View Details</button>
+              <button type="button" class="btn btn-outline-warning" (click)="objToShow(x)"> EditEmbeded</button>
+              <!-- <button [routerLink]="['/edit',x._id]">Edit</button> |-->
+              <button type="button" class="btn btn-outline-danger" (click)="deletePobject(x)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="row">
+        <div class="col-md-10"></div>
+        <app-edit *ngIf="parentVar" [childVar]="parentVar" (childEventEmitter)="dataFromChild($event)"></app-edit>
+      </div>
+    </div>
+  </div>
+</div>

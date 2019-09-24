@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="jumbotron">
+    <div style="text-align:center">
+      <p>I am in new object</p>
+
+      <h2>Create a new Primary Object</h2>
+      <button [routerLink]="['/home']">Go back home</button>
+      <div *ngIf="replyErrors">
+        <div *ngFor = 'let e of replyErrors'>
+          {{e}}
+        </div>
+      </div>
+
+      <section>
+        <fieldset>
+          <legend>Objects</legend>
+          {{ ObjForm.value | json }}
+          <p *ngIf="checker == 0">Created Successfully!</p>
+          <form (submit)="submitForm($event, ObjForm)" #ObjForm="ngForm">
+
+            <div class="form-group">
+              <label for="">Title: </label>
+              <input type="text" class="form-control" id="title" name="title" [(ngModel)]="pObject.title"
+                #title="ngModel" placeholder="title" minlength="3" required />
+              <div *ngIf="(title.touched || title.dirty) && title.errors">
+                <div *ngIf="title?.errors?.required" class="alert alert-danger">
+                  You must enter a title!
+                </div>
+                <div *ngIf="title?.errors?.minlength" class="alert alert-danger">
+                  Title must be at least
+                  {{ title?.errors?.minlength.requiredLength }} characters
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="">Second Label:</label>
+              <input type="textarea" class="form-control" id="descr" name="descr" [(ngModel)]="pObject.descr"
+                #descr="ngModel" placeholder="descr" minlength="3" required />
+              <div *ngIf="(descr.touched || descr.dirty) && descr.errors">
+                <div *ngIf="descr?.errors?.required" class="alert alert-danger">
+                  You must enter a descr!
+                </div>
+                <div *ngIf="descr?.errors?.minlength" class="alert alert-danger">
+                  descr must be at least
+                  {{ descr?.errors?.minlength.requiredLength }} characters
+                </div>
+              </div>
+            </div>
+            <button *ngIf="ObjForm.valid">Submit</button>
+          </form>
+        </fieldset>
+      </section>
+
+    </div>
+  </div>
+</div>
